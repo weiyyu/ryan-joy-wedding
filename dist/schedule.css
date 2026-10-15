@@ -1,0 +1,305 @@
+.header-home {
+  color: var(--wine);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--wine);
+  padding-bottom: 4px;
+}
+.header-home span { margin-left: 7px; font: 17px Arial, sans-serif; }
+
+.schedule-page { overflow: hidden; }
+.schedule-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(35px, 6vw, 100px);
+  max-width: 1320px;
+  min-height: 650px;
+  margin: auto;
+  padding: 66px 52px 86px;
+}
+.schedule-hero-copy { position: relative; z-index: 2; }
+.schedule-eyebrow, .schedule-aside-eyebrow {
+  margin: 0 0 33px;
+  color: var(--wine);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+}
+.schedule-eyebrow span { color: var(--rose-deep); padding: 0 5px; }
+.schedule-hero h1 {
+  margin: 0 0 21px;
+  color: var(--wine);
+  font-size: clamp(54px, 6vw, 84px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.17em;
+}
+.schedule-hero h1 span { color: var(--rose-deep); }
+.schedule-subtitle {
+  margin-bottom: 42px;
+  color: #655654;
+  font-size: 18px;
+  line-height: 2;
+  letter-spacing: 0.08em;
+}
+.schedule-hero-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 560px;
+  padding: 20px 0;
+  border-top: 1px solid #dfc9c5;
+  border-bottom: 1px solid #dfc9c5;
+}
+.schedule-hero-facts div { display: flex; flex-direction: column; gap: 8px; }
+.schedule-hero-facts span { color: var(--muted); font-size: 12px; letter-spacing: 0.14em; }
+.schedule-hero-facts strong { color: var(--wine); font-size: 17px; font-weight: 500; letter-spacing: 0.03em; }
+.schedule-down-link {
+  display: inline-flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 36px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--wine);
+  color: var(--wine);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+.schedule-down-link span { font: 18px Arial, sans-serif; }
+
+.schedule-hero-art { position: relative; min-height: 520px; isolation: isolate; }
+.schedule-hero-art::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -20px;
+  width: 95%;
+  height: 95%;
+  border-radius: 50% 50% 4px 4px / 38% 38% 4px 4px;
+  background: #ecd2d1;
+  transform: rotate(-8deg);
+}
+.schedule-photo-frame {
+  position: absolute;
+  top: 20px;
+  right: 18px;
+  bottom: 27px;
+  left: 38px;
+  overflow: hidden;
+  border: 10px solid var(--white);
+  border-bottom-width: 22px;
+  border-radius: 48% 48% 2px 2px / 31% 31% 2px 2px;
+  background: #965433;
+  box-shadow: var(--shadow);
+}
+.schedule-photo-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 36%;
+}
+.schedule-photo-caption {
+  position: absolute;
+  right: -15px;
+  top: 13px;
+  z-index: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--wine);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--wine);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  transform: rotate(9deg);
+}
+.schedule-sticker {
+  position: absolute;
+  bottom: -30px;
+  left: -64px;
+  width: clamp(130px, 14vw, 195px);
+  height: auto;
+  filter: drop-shadow(0 11px 10px rgba(76, 50, 48, 0.15));
+}
+
+.schedule-content {
+  display: grid;
+  grid-template-columns: minmax(255px, 0.68fr) minmax(0, 1.32fr);
+  gap: clamp(55px, 7vw, 105px);
+  padding: 92px max(52px, calc((100vw - 1216px) / 2)) 112px;
+  border-top: 1px solid rgba(125, 57, 71, 0.08);
+  background: var(--white);
+}
+.schedule-aside-inner { position: sticky; top: 33px; }
+.schedule-aside-eyebrow { margin-bottom: 22px; }
+.schedule-aside h2 {
+  margin: 0 0 24px;
+  color: var(--wine);
+  font-size: clamp(31px, 3.1vw, 45px);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.12em;
+}
+.schedule-aside-copy { max-width: 330px; margin-bottom: 29px; color: #756862; font-size: 14px; line-height: 1.95; }
+.live-status {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  max-width: 345px;
+  padding: 15px 17px;
+  border: 1px solid #e9d8d4;
+  background: #fcf5f2;
+  color: var(--wine);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.live-status-dot { flex: none; width: 8px; height: 8px; margin-top: 7px; border-radius: 50%; background: var(--rose-deep); }
+.live-status.is-live .live-status-dot { background: #a45060; box-shadow: 0 0 0 5px rgba(164,80,96,.13); }
+.jump-current {
+  margin-top: 14px;
+  padding: 0 0 7px;
+  border: 0;
+  border-bottom: 1px solid var(--wine);
+  background: transparent;
+  color: var(--wine);
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+.timeline-list { min-width: 0; }
+.timeline-chapter {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 0 0 7px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #dac9c4;
+}
+.timeline-chapter:not(:first-child) { margin-top: 40px; }
+.timeline-chapter span { color: var(--rose-deep); font-family: Georgia, "Times New Roman", serif; font-size: 23px; }
+.timeline-chapter h3 { margin: 0; color: var(--wine); font-size: 21px; font-weight: 500; letter-spacing: 0.12em; }
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 145px 22px minmax(0, 1fr);
+  gap: 17px;
+  align-items: start;
+  min-height: 99px;
+  padding: 23px 13px 20px 0;
+  border-bottom: 1px solid #eee4df;
+  scroll-margin-top: 24px;
+  transition: background 180ms ease, padding 180ms ease;
+}
+.timeline-item time { padding-top: 4px; color: var(--wine); font-family: Georgia, "Times New Roman", serif; font-size: 20px; white-space: nowrap; }
+.timeline-item time span { color: var(--muted); font-size: 13px; }
+.timeline-dot {
+  position: relative;
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin-top: 10px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  background: var(--rose-deep);
+  box-shadow: 0 0 0 1px var(--rose-deep);
+}
+.timeline-detail h4 { margin: 0 0 5px; color: var(--wine); font-size: 19px; font-weight: 500; letter-spacing: 0.1em; }
+.timeline-detail p { margin: 0; color: #746863; font-size: 14px; line-height: 1.75; }
+.timeline-item.is-current { margin: 5px -13px; padding-left: 13px; border-left: 3px solid var(--wine); background: #fcf1ee; }
+.timeline-item.is-current .timeline-dot { background: var(--wine); box-shadow: 0 0 0 1px var(--wine), 0 0 0 6px rgba(125,57,71,.12); }
+.timeline-item.is-current .timeline-detail h4::after { content: "現在進行"; margin-left: 11px; color: var(--wine); font-size: 11px; letter-spacing: 0.07em; white-space: nowrap; }
+.photo-order { max-width: 430px; margin-top: 17px; border-top: 1px solid var(--line); }
+.photo-order summary { display: flex; justify-content: space-between; align-items: center; padding: 13px 1px; color: var(--wine); cursor: pointer; font-size: 13px; letter-spacing: 0.08em; list-style: none; }
+.photo-order summary::-webkit-details-marker { display: none; }
+.photo-order summary span { font: 20px Arial, sans-serif; transition: transform 150ms ease; }
+.photo-order[open] summary span { transform: rotate(180deg); }
+.photo-order ol { margin: 2px 0 16px; padding-left: 22px; color: #6b5c57; font-size: 13px; line-height: 2; }
+.schedule-end { display: flex; gap: 15px; margin: 25px 0 0 0; padding-left: 2px; color: var(--wine); font-family: Georgia, "Times New Roman", serif; font-size: 19px; }
+.schedule-end span { align-self: center; color: var(--muted); font-family: "Noto Serif TC", "Songti TC", serif; font-size: 13px; letter-spacing: 0.08em; }
+
+.schedule-bottom {
+  padding: 77px 20px 86px;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(228,183,187,.27), transparent 31%),
+    radial-gradient(circle at 80% 10%, rgba(228,183,187,.25), transparent 30%),
+    #f8f0ec;
+  text-align: center;
+}
+.schedule-bottom-script { margin-bottom: 14px; color: var(--rose-deep); font-family: Georgia, "Times New Roman", serif; font-size: 18px; font-style: italic; letter-spacing: 0.04em; }
+.schedule-bottom h2 { margin-bottom: 13px; color: var(--wine); font-size: clamp(31px, 3vw, 43px); font-weight: 400; letter-spacing: 0.15em; }
+.schedule-bottom > p:not(.schedule-bottom-script) { color: #776a65; font-size: 14px; letter-spacing: 0.04em; }
+.schedule-bottom-links { display: flex; justify-content: center; gap: 12px; margin-top: 29px; }
+.schedule-bottom-links a { min-width: 150px; padding: 12px 18px; border: 1px solid var(--wine); color: var(--wine); text-decoration: none; font-size: 13px; letter-spacing: 0.08em; transition: background 150ms ease, color 150ms ease; }
+.schedule-bottom-links a:hover { background: var(--wine); color: white; }
+.schedule-bottom-links span { margin-left: 7px; font: 17px Arial, sans-serif; }
+
+@media (max-width: 1050px) {
+  .schedule-hero { gap: 28px; padding: 57px 38px 76px; }
+  .schedule-hero h1 { font-size: clamp(49px, 5.6vw, 72px); }
+  .schedule-hero-art { min-height: 470px; }
+  .schedule-sticker { left: -37px; width: 145px; }
+  .schedule-content { gap: 44px; padding-right: 38px; padding-left: 38px; }
+  .timeline-item { grid-template-columns: 132px 20px minmax(0, 1fr); gap: 11px; }
+  .timeline-item time { font-size: 18px; }
+}
+
+@media (max-width: 760px) {
+  .schedule-hero { display: flex; flex-direction: column; align-items: stretch; gap: 34px; min-height: 0; padding: 53px 23px 70px; }
+  .schedule-hero-copy { width: min(100%, 580px); margin: auto; }
+  .schedule-hero h1 { font-size: 60px; }
+  .schedule-hero-art { width: min(100%, 490px); min-height: 520px; margin: auto; }
+  .schedule-photo-frame { right: 30px; left: 40px; }
+  .schedule-photo-caption { right: 10px; }
+  .schedule-sticker { left: 0; }
+  .schedule-content { grid-template-columns: 1fr; gap: 45px; padding: 70px 23px 82px; }
+  .schedule-aside-inner { position: static; }
+  .schedule-aside h2 br { display: none; }
+  .schedule-aside-copy, .live-status { max-width: 560px; }
+  .timeline-list { width: min(100%, 690px); }
+}
+
+@media (max-width: 510px) {
+  .header-home { font-size: 10px; white-space: nowrap; }
+  .schedule-hero { padding: 42px 20px 60px; }
+  .schedule-eyebrow { margin-bottom: 22px; font-size: 10px; }
+  .schedule-hero h1 { margin-bottom: 17px; font-size: clamp(44px, 12vw, 57px); letter-spacing: 0.12em; }
+  .schedule-subtitle { margin-bottom: 26px; font-size: 14px; line-height: 1.85; }
+  .schedule-hero-facts { gap: 10px; padding: 16px 0; }
+  .schedule-hero-facts span { font-size: 10px; }
+  .schedule-hero-facts strong { font-size: 12px; line-height: 1.5; }
+  .schedule-down-link { margin-top: 26px; }
+  .schedule-hero-art { width: 100%; min-height: 110vw; max-height: 490px; }
+  .schedule-photo-frame { top: 10px; right: 20px; bottom: 14px; left: 28px; border-width: 7px; border-bottom-width: 17px; }
+  .schedule-photo-caption { right: 0; font-size: 8px; }
+  .schedule-sticker { left: -17px; bottom: -14px; width: 120px; }
+  .schedule-content { gap: 32px; padding: 58px 20px 71px; }
+  .schedule-aside-eyebrow { margin-bottom: 13px; font-size: 10px; }
+  .schedule-aside h2 { margin-bottom: 13px; font-size: 30px; }
+  .schedule-aside-copy { margin-bottom: 20px; font-size: 12px; }
+  .live-status { font-size: 12px; }
+  .timeline-chapter { gap: 11px; margin-bottom: 4px; }
+  .timeline-chapter h3 { font-size: 19px; }
+  .timeline-item { grid-template-columns: 18px minmax(0, 1fr); gap: 7px 12px; min-height: 0; padding: 17px 0 17px 2px; }
+  .timeline-item time { grid-column: 2; grid-row: 1; padding: 0; font-size: 17px; }
+  .timeline-item time span { font-size: 12px; }
+  .timeline-dot { grid-column: 1; grid-row: 1 / span 2; width: 11px; height: 11px; margin-top: 6px; }
+  .timeline-detail { grid-column: 2; grid-row: 2; }
+  .timeline-detail h4 { font-size: 18px; }
+  .timeline-detail p { font-size: 12px; }
+  .timeline-item.is-current { margin: 5px -7px; padding-left: 7px; }
+  .schedule-bottom { padding: 60px 20px 69px; }
+  .schedule-bottom > p:not(.schedule-bottom-script) { font-size: 12px; line-height: 1.7; }
+  .schedule-bottom-links { flex-direction: column; align-items: center; }
+  .schedule-bottom-links a { width: min(100%, 250px); }
+}
+
+@media (max-width: 360px) {
+  .site-header .header-caption { display: none; }
+  .header-home { font-size: 12px; }
+}

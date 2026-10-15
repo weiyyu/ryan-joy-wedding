@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f1ed" />
+    <meta name="description" content="翻開帷昱與子涵的婚紗相本，收藏屬於我們的每個瞬間。" />
+    <title>婚紗相本｜帷昱 & 子涵</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./gallery.css" />
+    <script src="./gallery.js" defer></script>
+  </head>
+  <body id="top">
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="monogram" href="./index.html" aria-label="返回帷昱與子涵婚禮首頁">
+          <span>R</span><span class="monogram-amp">&amp;</span><span>J</span>
+        </a>
+        <span class="header-caption">帷昱 &amp; 子涵的婚禮邀請</span>
+        <a class="gallery-home" href="./index.html">回到邀請函 <span aria-hidden="true">↗</span></a>
+      </header>
+
+      <main class="gallery-main">
+        <section class="gallery-intro" aria-labelledby="gallery-title">
+          <div class="gallery-intro-copy">
+            <p class="gallery-eyebrow"><span class="gallery-eyebrow-line" aria-hidden="true"></span> OUR STORY, IN PHOTOGRAPHS</p>
+            <h1 id="gallery-title">我們的<span>婚紗相本</span></h1>
+            <p class="gallery-lede">翻開每一頁，都是和你一起走過的美好時光。<br />謝謝你，也來參與我們的故事。</p>
+            <div class="gallery-intro-meta"><span>RYAN &amp; JOY</span><span>2026 · NOVEMBER 14</span></div>
+          </div>
+          <div class="gallery-intro-art" aria-hidden="true">
+            <span class="gallery-art-circle"></span>
+            <img src="./assets/gallery/album-sticker.webp" alt="" width="650" height="650" />
+            <span class="gallery-art-heart">♡</span>
+          </div>
+        </section>
+
+        <section class="album-section" aria-labelledby="album-heading">
+          <div class="album-heading-row">
+            <div>
+              <p class="album-eyebrow">THE ALBUM <span aria-hidden="true">✳</span> 26 MOMENTS</p>
+              <h2 id="album-heading">一頁一頁，慢慢看</h2>
+            </div>
+            <p class="album-help">左右滑動或點箭頭翻頁<br />點照片可放大欣賞</p>
+          </div>
+
+          <div class="album-book" aria-label="可翻頁的婚紗相本">
+            <div class="album-stage" id="album-stage">
+              <div class="album-pages" id="album-pages" aria-live="polite">
+                <figure class="album-page">
+                  <button class="album-photo" type="button" data-photo-index="0" aria-label="放大第 1 張照片">
+                    <img src="./assets/gallery/Y25836-0011.webp" alt="帷昱與子涵相視而笑的婚紗照" />
+                  </button>
+                  <figcaption><span>01 / 26</span><span>一起笑的日子</span></figcaption>
+                </figure>
+              </div>
+              <p class="album-loading" id="album-loading" role="status" hidden>照片載入中…</p>
+            </div>
+          </div>
+
+          <div class="album-controls" aria-label="相本翻頁控制">
+            <button class="album-nav" id="album-prev" type="button" aria-label="上一頁" disabled><span aria-hidden="true">←</span><span>上一頁</span></button>
+            <span class="album-count" id="album-count" aria-live="polite">01 / 26</span>
+            <button class="album-nav" id="album-next" type="button" aria-label="下一頁"><span>下一頁</span><span aria-hidden="true">→</span></button>
+          </div>
+
+          <div class="filmstrip-wrap">
+            <div class="filmstrip-heading"><span>快速翻到某一頁</span><span aria-hidden="true">SCENES FROM OUR STORY</span></div>
+            <div class="filmstrip" id="filmstrip" aria-label="選擇婚紗照片"></div>
+          </div>
+        </section>
+
+        <div class="gallery-ending"><span aria-hidden="true">♡</span><p>To have and to hold, from this day forward.</p><a href="./index.html">回到婚禮邀請函 <span aria-hidden="true">↗</span></a></div>
+      </main>
+
+      <footer class="site-footer">
+        <span>帷昱 <span aria-hidden="true">♡</span> 子涵</span>
+        <span>2026.11.14 · 火把教會副堂</span>
+      </footer>
+    </div>
+
+    <dialog class="photo-dialog" id="photo-dialog" aria-labelledby="lightbox-caption">
+      <button class="lightbox-close" type="button" id="lightbox-close" aria-label="關閉放大照片">×</button>
+      <button class="lightbox-arrow lightbox-prev" type="button" id="lightbox-prev" aria-label="上一張照片">←</button>
+      <figure class="lightbox-figure">
+        <img id="lightbox-image" src="./assets/gallery/Y25836-0011.webp" alt="" />
+        <figcaption><span id="lightbox-count">01 / 26</span><span id="lightbox-caption">一起笑的日子</span></figcaption>
+      </figure>
+      <button class="lightbox-arrow lightbox-next" type="button" id="lightbox-next" aria-label="下一張照片">→</button>
+    </dialog>
+  </body>
+</html>
