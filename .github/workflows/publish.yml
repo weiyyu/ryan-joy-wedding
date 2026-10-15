@@ -1,7 +1,9 @@
 name: Publish wedding invitation
 
-# The first publication is manual, so pushing files alone does not make the site public.
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
