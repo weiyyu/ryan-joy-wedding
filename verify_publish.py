@@ -23,7 +23,7 @@ class SiteHTML(HTMLParser):
             value = values.get(key)
             if value:
                 self.references.append(value)
-                if value.startswith("https://www.google.com/maps/search/"):
+                if value.startswith("https://www.google.com/maps/"):
                     self.maps_links.append(value)
 
 
@@ -75,7 +75,7 @@ def main() -> int:
         for folder in ("gallery", "gallery/thumbs"):
             check_path(f"./assets/{folder}/Y25836-{photo_id}.webp", SITE / "gallery.js")
 
-    if map_urls.get("index.html") != map_urls.get("schedule.html"):
+    if not map_urls.get("index.html") or map_urls.get("index.html") != map_urls.get("schedule.html"):
         ERRORS.append("Homepage and schedule use different church map URLs")
 
     files = [path for path in SITE.rglob("*") if path.is_file()]
