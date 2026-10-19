@@ -1,3 +1,4 @@
+const albumAssetVersion = "20261019-retouched";
 const albumPhotos = [
   ["0011", "一起笑的日子", "帷昱與子涵相視而笑的婚紗照"],
   ["0016", "向日葵與你", "帷昱與子涵在向日葵旁的婚紗照"],
@@ -26,8 +27,8 @@ const albumPhotos = [
   ["0281", "摩天輪下的你我", "帷昱與子涵在摩天輪前的婚紗照"],
   ["0285", "故事還會繼續", "子涵在摩天輪前的婚紗照"],
 ].map(([number, caption, alt]) => ({
-  src: `./assets/gallery/Y25836-${number}.webp`,
-  thumb: `./assets/gallery/thumbs/Y25836-${number}.webp`,
+  src: `./assets/gallery/Y25836-${number}.webp?v=${albumAssetVersion}`,
+  thumb: `./assets/gallery/thumbs/Y25836-${number}.webp?v=${albumAssetVersion}`,
   caption,
   alt,
 }));

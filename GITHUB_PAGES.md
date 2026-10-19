@@ -8,6 +8,8 @@
 
 在這個 `wedding-site` 資料夾修改 `dist/` 內的網頁與素材。提交並推送到 `main` 後，GitHub Actions 會先檢查檔案與倒數，再自動發布 `dist/`。也可以到儲存庫的 Actions 頁面手動執行 **Publish wedding invitation**。
 
+更新相本照片時，先執行 `python build_gallery_assets.py`，確認 26 張照片與縮圖都已重建；接著更新 `dist/gallery.js`、`dist/gallery.html` 與首頁相本連結中的相片版本參數，讓訪客立即取得新版素材。原始 JPG 不會上傳。
+
 發布前可在本機執行：
 
 ```powershell
