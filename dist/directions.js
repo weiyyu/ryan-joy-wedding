@@ -1,5 +1,5 @@
 const SVG_NS = "http://www.w3.org/2000/svg";
-const assetVersion = "20261026";
+const assetVersion = "20261026-ground";
 
 // Coordinates are relative to the upright, square original photos (0–1000).
 // The *_箭頭.jpg photos in the source folder were used only to trace directions.
@@ -56,23 +56,53 @@ function svgElement(name, attributes) {
 }
 
 function drawPath(group, arrow, branch = false) {
-  group.append(svgElement("path", {
-    d: arrow.path, fill: "none", stroke: "rgba(255,253,250,.94)",
-    "stroke-width": branch ? 50 : 62, "stroke-linecap": "round", "stroke-linejoin": "round",
-  }));
-  group.append(svgElement("path", {
-    d: arrow.path, fill: "none", stroke: "#bd4062",
-    "stroke-width": branch ? 31 : 42, "stroke-linecap": "round", "stroke-linejoin": "round",
-  }));
-  const [x, y, angle] = arrow.tip;
-  const shape = branch ? "M -46 -34 L 0 0 L -46 34" : "M -62 -44 L 0 0 L -62 44";
-  for (const [stroke, width] of [["rgba(255,253,250,.94)", branch ? 49 : 61], ["#bd4062", branch ? 31 : 42]]) {
-    group.append(svgElement("path", {
-      d: shape, fill: "none", stroke, "stroke-width": width,
-      "stroke-linecap": "round", "stroke-linejoin": "round",
-      transform: `translate(${x} ${y}) rotate(${angle})`,
-    }));
+  // Sample the route's centre line to make one tapered surface on the floor.
+  // A narrow far end and wider near end give the arrow the photo's perspective.
+  const centreLine = svgElement("path", { d: arrow.path, fill: "none" });
+  group.append(centreLine);
+  const length = centreLine.getTotalLength();
+  const headLength = Math.min(branch ? 70 : 105, length * .28);
+  const shaftLength = length - headLength;
+  const nearWidth = branch ? 90 : 170;
+  const farWidth = branch ? 40 : 68;
+  const headWidth = branch ? 105 : 165;
+  const samples = 28;
+  const left = [];
+  const right = [];
+  for (let i = 0; i <= samples; i += 1) {
+    const distance = shaftLength * i / samples;
+    const point = centreLine.getPointAtLength(distance);
+    const before = centreLine.getPointAtLength(Math.max(0, distance - 3));
+    const after = centreLine.getPointAtLength(Math.min(length, distance + 3));
+    const magnitude = Math.hypot(after.x - before.x, after.y - before.y) || 1;
+    const nx = -(after.y - before.y) / magnitude;
+    const ny = (after.x - before.x) / magnitude;
+    const width = nearWidth + (farWidth - nearWidth) * Math.pow(i / samples, .85);
+    left.push([point.x + nx * width / 2, point.y + ny * width / 2]);
+    right.push([point.x - nx * width / 2, point.y - ny * width / 2]);
   }
+  const base = centreLine.getPointAtLength(shaftLength);
+  const beforeBase = centreLine.getPointAtLength(Math.max(0, shaftLength - 3));
+  const afterBase = centreLine.getPointAtLength(Math.min(length, shaftLength + 3));
+  const magnitude = Math.hypot(afterBase.x - beforeBase.x, afterBase.y - beforeBase.y) || 1;
+  const nx = -(afterBase.y - beforeBase.y) / magnitude;
+  const ny = (afterBase.x - beforeBase.x) / magnitude;
+  const tip = centreLine.getPointAtLength(length);
+  const points = [
+    ...left,
+    [base.x + nx * headWidth / 2, base.y + ny * headWidth / 2],
+    [tip.x, tip.y],
+    [base.x - nx * headWidth / 2, base.y - ny * headWidth / 2],
+    ...right.reverse(),
+  ];
+  centreLine.remove();
+  const outline = points.map(([x, y], i) => `${i ? "L" : "M"} ${x.toFixed(1)} ${y.toFixed(1)}`).join(" ") + " Z";
+  group.append(svgElement("path", {
+    d: outline,
+    fill: "#cb416a", "fill-opacity": branch ? .43 : .49,
+    stroke: "#fff6f1", "stroke-opacity": .57, "stroke-width": 4,
+    "stroke-linejoin": "round",
+  }));
 }
 
 function drawArrow(step) {
@@ -80,16 +110,19 @@ function drawArrow(step) {
   for (const branch of step.branches || []) drawPath(arrowGroup, branch, true);
   drawPath(arrowGroup, step);
   const [x, y] = step.label;
-  arrowGroup.append(svgElement("rect", {
-    x: x - 116, y: y - 43, width: 232, height: 86, rx: 43,
-    fill: "#a93456", stroke: "#fffdfa", "stroke-width": 10,
-  }));
+  // Two short painted lines stay inside the wider near end of the arrow.
   const text = svgElement("text", {
-    x, y: y + 14, "text-anchor": "middle", fill: "#fffdfa",
-    "font-family": "Arial, 'Noto Sans TC', sans-serif", "font-size": 45,
+    x: 0, "text-anchor": "middle", fill: "#fffdfa",
+    stroke: "rgba(69,27,41,.62)", "stroke-width": 3.5, "paint-order": "stroke fill",
+    "font-family": "Arial, 'Noto Sans TC', sans-serif", "font-size": 62,
     "font-weight": 800, "letter-spacing": 1,
+    transform: `translate(${x} ${y}) scale(.88 .8)`,
   });
-  text.textContent = "GO！去！";
+  const english = svgElement("tspan", { x: 0, y: -18 });
+  english.textContent = "GO！";
+  const chinese = svgElement("tspan", { x: 0, y: 52 });
+  chinese.textContent = "去！";
+  text.append(english, chinese);
   arrowGroup.append(text);
 }
 
