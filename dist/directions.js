@@ -1,5 +1,5 @@
 const SVG_NS = "http://www.w3.org/2000/svg";
-const assetVersion = "20261026-ground";
+const assetVersion = "20261026-smooth";
 
 // Coordinates are relative to the upright, square original photos (0–1000).
 // The *_箭頭.jpg photos in the source folder were used only to trace directions.
@@ -13,7 +13,7 @@ const routes = {
       { title: "進入大廳後往左", detail: "先往前走，穿過大廳後依箭頭向左轉。", path: "M 555 955 C 575 820 530 735 440 700 C 365 670 300 675 225 660", tip: [225, 660, 180], label: [535, 800] },
       { title: "繞過圓柱，向前走", detail: "繞過圓柱，沿前方的走廊繼續走。", path: "M 570 960 C 595 810 625 670 660 535", tip: [660, 535, -75], label: [600, 790] },
       { title: "通過前方的門", detail: "沿走廊走，從前方開著的門通過。", path: "M 450 955 C 450 785 510 660 585 570", tip: [585, 570, -50], label: [465, 800] },
-      { title: "長廊直走，再向右", detail: "沿長廊往前走，看到指示牌時向右轉，抵達副堂 B1。", path: "M 355 965 L 350 620 Q 350 580 395 580 L 555 580", tip: [555, 580, 0], label: [355, 805] },
+      { title: "長廊直走，再向右", detail: "沿長廊往前走，看到指示牌時向右轉，抵達副堂 B1。", path: "M 355 965 L 355 720 C 355 645 405 580 485 580 L 555 580", tip: [555, 580, 0], label: [355, 805] },
     ],
   },
   oak: {
@@ -22,12 +22,12 @@ const routes = {
     steps: [
       { title: "走進台開承德大樓", detail: "從橡木桶旁的台開承德大樓入口進入；不論從左右哪側走來，都往中央大門。", path: "M 550 945 C 550 800 550 680 550 555", tip: [550, 555, -90], label: [550, 700], branches: [ { path: "M 135 795 L 355 815", tip: [355, 815, 6] }, { path: "M 905 835 L 690 835", tip: [690, 835, 180] } ] },
       { title: "下到 B1，往右前方", detail: "進入大樓後前往 B1；抵達照片中的大廳時，往右前方走。", path: "M 370 955 C 455 805 590 660 720 560", tip: [720, 560, -35], label: [510, 790] },
-      { title: "到大廳前方向右轉", detail: "走到大廳前方，依箭頭向右轉。", path: "M 475 945 L 475 640 Q 475 610 515 610 L 735 610", tip: [735, 610, 0], label: [475, 790] },
+      { title: "到大廳前方向右轉", detail: "走到大廳前方，依箭頭向右轉。", path: "M 475 945 L 475 735 C 475 650 530 610 615 610 L 735 610", tip: [735, 610, 0], label: [475, 790] },
       { title: "沿 B1 走廊往前", detail: "跟著照片往前，朝前方有指示牌的方向走。", path: "M 660 955 C 670 820 690 700 685 575", tip: [685, 575, -90], label: [670, 800] },
       { title: "沿歷史牆走向入口", detail: "經過左側的教會歷史牆，往右前方開著的門走。", path: "M 450 955 C 470 800 545 670 625 600", tip: [625, 600, -45], label: [500, 795] },
       { title: "繞過圓柱，向前走", detail: "繞過圓柱，沿前方的走廊繼續走。", path: "M 570 960 C 595 810 625 670 660 535", tip: [660, 535, -75], label: [600, 790] },
       { title: "通過前方的門", detail: "沿走廊走，從前方開著的門通過。", path: "M 450 955 C 450 785 510 660 585 570", tip: [585, 570, -50], label: [465, 800] },
-      { title: "長廊直走，再向右", detail: "沿長廊往前走，看到指示牌時向右轉，抵達副堂 B1。", path: "M 355 965 L 350 620 Q 350 580 395 580 L 555 580", tip: [555, 580, 0], label: [355, 805] },
+      { title: "長廊直走，再向右", detail: "沿長廊往前走，看到指示牌時向右轉，抵達副堂 B1。", path: "M 355 965 L 355 720 C 355 645 405 580 485 580 L 555 580", tip: [555, 580, 0], label: [355, 805] },
     ],
   },
 };
@@ -110,19 +110,15 @@ function drawArrow(step) {
   for (const branch of step.branches || []) drawPath(arrowGroup, branch, true);
   drawPath(arrowGroup, step);
   const [x, y] = step.label;
-  // Two short painted lines stay inside the wider near end of the arrow.
+  // The painted word sits inside the wider near end of the arrow.
   const text = svgElement("text", {
-    x: 0, "text-anchor": "middle", fill: "#fffdfa",
-    stroke: "rgba(69,27,41,.62)", "stroke-width": 3.5, "paint-order": "stroke fill",
+    x: 0, y: 10, "text-anchor": "middle", fill: "#fffdfa",
+    stroke: "rgba(69,27,41,.72)", "stroke-width": 6.5, "stroke-linejoin": "round", "paint-order": "stroke fill",
     "font-family": "Arial, 'Noto Sans TC', sans-serif", "font-size": 62,
     "font-weight": 800, "letter-spacing": 1,
     transform: `translate(${x} ${y}) scale(.88 .8)`,
   });
-  const english = svgElement("tspan", { x: 0, y: -18 });
-  english.textContent = "GO！";
-  const chinese = svgElement("tspan", { x: 0, y: 52 });
-  chinese.textContent = "去！";
-  text.append(english, chinese);
+  text.textContent = "GO！";
   arrowGroup.append(text);
 }
 
