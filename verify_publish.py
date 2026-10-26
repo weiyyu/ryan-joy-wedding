@@ -75,8 +75,14 @@ def main() -> int:
         for folder in ("gallery", "gallery/thumbs"):
             check_path(f"./assets/{folder}/Y25836-{photo_id}.webp", SITE / "gallery.js")
 
+    for route, count in (("kulun", 6), ("oak", 8)):
+        for number in range(1, count + 1):
+            check_path(f"./assets/directions/{route}/{number}.webp", SITE / "directions.js")
+
     if not map_urls.get("index.html") or map_urls.get("index.html") != map_urls.get("schedule.html"):
         ERRORS.append("Homepage and schedule use different church map URLs")
+    if map_urls.get("directions.html") != map_urls.get("index.html"):
+        ERRORS.append("Directions and homepage use different church map URLs")
 
     files = [path for path in SITE.rglob("*") if path.is_file()]
     allowed_suffixes = {".html", ".css", ".js", ".svg", ".webp"}
@@ -92,7 +98,7 @@ def main() -> int:
             print("ERROR:", error, file=sys.stderr)
         return 1
     total = sum(path.stat().st_size for path in files)
-    print(f"OK: {len(files)} publishable files, {total / 1024 / 1024:.2f} MiB, {len(photo_ids)} album photos")
+    print(f"OK: {len(files)} publishable files, {total / 1024 / 1024:.2f} MiB, {len(photo_ids)} album photos, 14 direction photos")
     return 0
 
 

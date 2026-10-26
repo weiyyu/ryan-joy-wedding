@@ -341,6 +341,7 @@ h1 em { font-style: normal; }
 .action-primary small { color: #eed9dc; }
 .action-arrow { justify-self: end; color: var(--wine); font-size: 22px; font-family: Arial, sans-serif; }
 .action-primary .action-arrow { color: white; }
+.action-directions { grid-column: 1 / -1; background: #f8eeeb; }
 
 .site-footer {
   display: flex;
